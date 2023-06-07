@@ -176,4 +176,24 @@ describe("#wordSearch()", function() {
 
     assert.isTrue(result);
   });
+
+  
+  it("should return false if the word is present but not in straight lines.", function() {
+    const result = wordSearch(
+      [
+        ["A", "W", "S", "F", "Q", "U", "A", "L"],
+        ["S", "E", "I", "N", "N", "E", "L", "D"],
+        ["Y", "F", "C", "F", "Q", "U", "A", "L"],
+        ["H", "M", "G", "N", "E", "V", "R", "G"],
+        ["W", "H", "C", "O", "Y", "E", "R", "L"],
+        ["B", "F", "W", "R", "N", "E", "Y", "B"],
+        ["U", "B", "T", "W", "A", "P", "A", "I"],
+        ["O", "D", "C", "A", "K", "T", "A", "S"],
+        ["E", "Z", "K", "F", "H", "U", "A", "L"],
+      ],
+      "WRONG"
+    );
+
+    assert.isFalse(result);
+  });
 });

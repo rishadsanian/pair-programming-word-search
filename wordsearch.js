@@ -1,11 +1,13 @@
 const wordSearch = (letters, word) => {
 
+
   //Check Surroundings method
+
   const rows = letters.length;
   const cols = letters[0].length;
   const totalLetters = rows * cols;
-  const search = [];//records positive search letter matches
-  let count = 0;//to keep track of how many letters it scanned through to get first letter match
+  const search = []; //records positive search letter matches
+  let count = 0; //to keep track of how many letters it scanned through to get first letter match
   let wordIndex = 0; //index of each letter in word
   let i = 0;
   let j = 0;
@@ -21,36 +23,47 @@ const wordSearch = (letters, word) => {
   };
 
   const checkSurrounding = (searchLetter, wordLetter) => {
-    if (searchLetter !== wordLetter) {//if first letter doesn't match
+    if (searchLetter !== wordLetter) {
+      //if first letter doesn't match
       count++;
       return false;
     }
-    
+
     search.push(searchLetter);
     wordIndex++;
 
+    //if word is not matched or the whole grid has been scanned
     while (search.length < word.length || count < totalLetters) {
-      for (const direction in directions) {//set direction
+      for (const direction in directions) {
+        //loop through each direction
         const [di, dj] = directions[direction];
         const newI = i + di;
         const newJ = j + dj;
 
-        if (newI >= 0 && newI < rows && newJ >= 0 && newJ < cols && letters[newI][newJ] === word[wordIndex]) {
+        //stay inside the grid
+        if (
+          newI >= 0 &&
+          newI < rows &&
+          newJ >= 0 &&
+          newJ < cols &&
+          letters[newI][newJ] === word[wordIndex]
+        ) {//maintain same direction
           i = newI;
           j = newJ;
           return true;
         }
       }
-      count++;
-      return false;
+      count++;//keeps track of each starting letter
+      return false;//counted through all the letters
     }
 
-    return search === word; // if fully matched
+    return search === word; // if fully matched returns true
   };
 
-  //
+  //loops through each starting letter
   for (i = 0; i < rows; i++) {
-    for (j = 0; j < cols; j++) {//for each starting letter
+    for (j = 0; j < cols; j++) {
+    // and checks for matches for the word
       if (checkSurrounding(letters[i][j], word[0])) {
         return true;
       }
@@ -59,8 +72,6 @@ const wordSearch = (letters, word) => {
 
   return false;
 };
-
-
 
 /*
 
