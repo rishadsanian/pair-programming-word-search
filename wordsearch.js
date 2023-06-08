@@ -32,13 +32,12 @@ const wordSearch = (letters, word) => {
     search.push(searchLetter);
     wordIndex++;
 
-    //if word is not matched or the whole grid has been scanned
+    //if word is not matched or the whole grid has been scanned keeps scanning
     while (search.length < word.length || count < totalLetters) {
-      for (const direction in directions) {
-        //loop through each direction
+      for (const direction in directions) {//loop through each direction
         const [di, dj] = directions[direction];
-        const newI = i + di;
-        const newJ = j + dj;
+        const newI = i + di;//set direction
+        const newJ = j + dj;//set direction
 
         //stay inside the grid
         if (
