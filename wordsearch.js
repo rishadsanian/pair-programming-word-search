@@ -72,6 +72,7 @@ const wordSearch = (letters, word) => {
   return false;
 };
 
+//Can be furthered refactored to use callbacks perhaps or MAYBE recursion.
 
 //Larry Suggestions to be reviwerd:
 
