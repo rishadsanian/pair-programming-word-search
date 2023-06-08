@@ -32,7 +32,7 @@ const wordSearch = (letters, word) => {
     search.push(searchLetter);
     wordIndex++;
 
-    //if word is not matched or the whole grid has been scanned keeps scanning
+    //if word is not matched or the whole grid has been scanned -> keeps scanning
     while (search.length < word.length || count < totalLetters) {
       for (const direction in directions) {//loop through each direction
         const [di, dj] = directions[direction];
@@ -56,7 +56,7 @@ const wordSearch = (letters, word) => {
       return false;//counted through all the letters
     }
 
-    return search === word; // if fully matched returns true
+    return search.join("") === word; // if fully matched returns true
   };
 
   //loops through each starting letter
@@ -72,9 +72,24 @@ const wordSearch = (letters, word) => {
   return false;
 };
 
+
+//Larry Suggestions to be reviwerd:
+
+/* In your checkSurrounding function, search and wordIndex are never reset to their initial values when a new iteration begins. You should reset the values of search and wordIndex when restarting a search from a new starting position.//Not sure if that would work easily - more review needed for this
+
+You have some commented code that you mentioned as not used or not finished. It's a good practice to remove such code from your final it doesn't add any value to the solution or understanding of the problem.
+
+The variable names i and j can be quite ambiguous when used outside loops. You might consider renaming them to something more descriptive, like currentRow and currentCol respectively. ////Good idea! will implement later
+
+In the checkSurrounding function, you have a line return search === word;. However, search is an array while word is a string. What you probably meant to do was compare search.join("") to word instead, so you should change it to return search.join("") === word;.////Correct - implemented
+
+It would be great to add some comments to your test cases, describing the specific scenarios that you are testing.//
+
+ */
+
 /*
 
-  //Traverse method;
+  //Traverse method; - did not finish or use
   //horizontal
   const horizontalJoin = letters.map((ls) => ls.join(""));
   const backHorJoin = letters.map((ls) => ls.reverse().join(""));
